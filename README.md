@@ -21,8 +21,9 @@ Web platform for Code in the Dark competition.
 
 ## Workflow
 
-- Use your feature branch for developing (i.e. `server`, `contestant`, or `admin`).
+- Use your feature branch for developing (i.e. `server`, `contestant`, or `admin`) using `git checkout -b <branch>`.
+- Push only to your branch: `git push -u origin <branch>`. The `-u` sets the upstream to the remote branch. After this, only `git push` works.
 - If there's an update on master, sync with: `git checkout master`, `git pull`, `git checkout <branch>`, `git rebase master`.
-- Use descriptive commit messages (No 'commit banyak')
-- Make atomic working commits (Work on a single small feature each time. Don't commit unfinished work unless specified as WIP)
-- If you finished working on a branch (or want to merge your branch to master), use the 'Merge Request' feature on Gitlab
+- Use descriptive commit messages (No 'commit banyak').
+- Make atomic working commits (Work on a single small feature each time. Don't commit unfinished work unless specified as WIP).
+- If you finished working on a branch (or want to merge your branch to master), use the 'Merge Request' feature on Gitlab.
