@@ -28,7 +28,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/mode-html.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/theme-monokai.js"></script>
 <script>
+(function () {
   var editor = ace.edit("editor");
-	editor.setTheme("ace/theme/monokai");
-	editor.getSession().setMode("ace/mode/javascript");
+  var socket = io();
+  var old_data;
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/html");
+  editor.setHighlightActiveLine(true);
+
+  editor.commands.addCommand({
+    name: 'save',
+    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+    exec: function(editor) {
+      store();
+    },
+    readOnly: false
+  });
+  
+  socket.on('success', function() {
+    //TO DO: create flash message to user
+  });
+  $('#save-button').click(store);
+
+  function store(data) {
+    var data = {
+      'user_id' : '', // user id
+      'data' : editor.getValue()
+    };    
+    if(JSON.stringify(old_data) !== JSON.stringify(data)) {
+      socket.emit('store', data);
+      old_data = data;
+    }
+  }
+
+})();
 </script>
