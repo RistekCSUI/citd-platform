@@ -1,3 +1,78 @@
-h1 {
-  color: #f00;
+.navbar {
+  border-radius: 0;
+}
+
+div.row.row-table {
+  display: table;
+  margin: 0;
+  width: 100%;
+}
+
+div[class^="col-"].col-table-cell {
+  float: none;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.site {
+  margin-top: 60px;
+}
+@media screen and (max-width: 1199px) {
+  .site {
+    margin-top: 50px;
+  }
+}
+
+.login-site {
+  background-color: #222222;
+  min-height: 100vh;
+}
+.login-site .row-table {
+  height: 100vh;
+}
+
+.admin-site {
+  background-color: #212121;
+  min-height: 100vh;
+}
+
+.preview-cell {
+  position: relative;
+}
+
+.preview-cell .btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.preview-cell:hover .btn {
+  display: block;
+}
+
+.admin-site iframe {
+  width: 100%;
+  height: 56.25%;
+  z-index: -999;
+  background-color: #fff;
+}
+
+.preview-cell.fullscreen iframe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+}
+
+.close-fullscreen {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 999;
 }
