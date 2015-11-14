@@ -35,7 +35,8 @@
   editor.setTheme("ace/theme/monokai");
   editor.getSession().setMode("ace/mode/html");
   editor.setHighlightActiveLine(true);
-
+  editor.getSession().setUseWorker(false);
+  editor.setBehavioursEnabled(false);
   editor.commands.addCommand({
     name: 'save',
     bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
