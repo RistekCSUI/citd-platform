@@ -14,15 +14,6 @@ div[class^="col-"].col-table-cell {
   vertical-align: middle;
 }
 
-.site {
-  margin-top: 60px;
-}
-@media screen and (max-width: 1199px) {
-  .site {
-    margin-top: 50px;
-  }
-}
-
 .login-site {
   background-color: #222222;
   min-height: 100vh;
@@ -34,6 +25,10 @@ div[class^="col-"].col-table-cell {
 .admin-site {
   background-color: #212121;
   min-height: 100vh;
+}
+
+.admin-site .btn {
+  margin: 8px 0;
 }
 
 .preview-cell {
