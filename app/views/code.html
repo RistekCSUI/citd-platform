@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <title>Code</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 <style type="text/css" media="screen">
   #editor { 
     position: absolute;
@@ -69,6 +69,7 @@
   var editor = ace.edit("editor");
   var socket = io();
   var old_data;
+  $('#editor').css('fontSize', '20px');
   editor.setTheme("ace/theme/monokai");
   editor.getSession().setMode("ace/mode/html");
   editor.setHighlightActiveLine(true);
