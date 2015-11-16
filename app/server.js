@@ -85,7 +85,11 @@ MongoClient.connect(DB_URL, function (err, db) {
   })
 
   app.get('/code', loggedIn, function (req, res) {
-    res.render('code.html', { user: req.session.user });
+    db.collection('codes')
+      .findOne({ username: req.session.user.username }, function (err, user) {
+        if (err) return res.json(err);
+        res.render('code.html', { user: user });
+      });
   });
 
   app.get('/admin', loggedIn, isAdmin, function (req, res) {
@@ -94,6 +98,12 @@ MongoClient.connect(DB_URL, function (err, db) {
       .sort({ id: 1 })
       .toArray(function (err, users) {
         if (err) return res.json(err);
+
+        users = users.map(function (user) {
+          user.code = user.code.replace(/\n/g, '');
+          return user;
+        });
+        console.log(users);
         res.render('admin.html', { users: users });
       });
   });
@@ -101,8 +111,16 @@ MongoClient.connect(DB_URL, function (err, db) {
   // SOCKET CONFIGURATION
   io.on('connection', function (socket) {
     socket.on('code save', function (data) {
-      socket.emit('save response', { success: true });
-      io.emit('code update', data);
+      db.collection('codes')
+        .updateOne({ id: data.userId }, { $set: { code: data.code } }, function (err, results) {
+          if (err) {
+            socket.emit('save response', { success: false });
+            return console.err(err);
+          }
+
+          socket.emit('save response', { success: true });
+          io.emit('code update', data);
+        });
     });
 
     socket.on('competition end', function () {
