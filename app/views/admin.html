@@ -72,7 +72,7 @@
     var socket = io();
     socket.on('code update', function(data) {
         var html = $.parseHTML(data.code);
-        var id = data.id;
+        var id = '#' + data.userId;
         $(id).contents().find('html').html(html);
     });
 
