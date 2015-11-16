@@ -70,6 +70,11 @@ app.post('/', function (req, res) {
   }
 });
 
+app.get('/logout', function (req, res) {
+  delete req.session.user;
+  res.redirect('/');
+})
+
 app.get('/code', loggedIn, function (req, res) {
   res.render('code.html', { user: req.session.user });
 });
