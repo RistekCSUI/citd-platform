@@ -18,6 +18,14 @@
     z-index: 100;
     display: none;
   }
+
+  #end-message {
+    position: fixed;
+    display: none;
+    top: 30%;
+    left: 30%;
+    align-items: center;
+  }
   .btn {
     margin: 8px 0;
   }
@@ -44,7 +52,7 @@
 </nav>
 <div id="editor"></div>
 <div id="message"></div>
-
+<div id="end-message"></div>
   <!-- Modal -->
 <div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
@@ -61,7 +69,6 @@
     </div>
   </div>
 </div>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.7/socket.io.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -102,6 +109,9 @@
   socket.on('competition end', function() {
     editor.setReadOnly(true);
     $('#save-button').click(function(){});
+    $('#end-message').html('Competition has ended. Thank you for your participance :")');
+    $('#end-message').addClass('alert alert-danger');
+    $('#end-message').fadeIn(500);
   });
   function store(data) {
     var data = {
