@@ -72,7 +72,7 @@
 (function () {
   var editor = ace.edit("editor");
   var socket = io();
-  var old_data;
+  var oldData;
   $('#editor').css('fontSize', '20px');
   editor.setTheme("ace/theme/monokai");
   editor.getSession().setMode("ace/mode/html");
@@ -99,15 +99,18 @@
     $('#message').fadeIn(500).delay(1000).fadeOut(500);
   });
   $('#save-button').click(store);
-
+  socket.on('competition end', function() {
+    editor.setReadOnly(true);
+    $('#save-button').click(function(){});
+  });
   function store(data) {
     var data = {
-      'user_id' : '', // user id
-      'data' : editor.getValue()
+      userId: '', // user id
+      code: editor.getValue()
     };    
-    if(JSON.stringify(old_data) !== JSON.stringify(data)) {
+    if(JSON.stringify(oldData) !== JSON.stringify(data)) {
       socket.emit('code save', data);
-      old_data = data;
+      oldData = data;
     }
   }
 
