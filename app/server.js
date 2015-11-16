@@ -37,7 +37,7 @@ app.get('/admin', function (req, res) {
 io.on('connection', function (socket) {
   socket.on('code save', function (data) {
     socket.emit('save response', { success: true });
-    io.emit('code update', { code: data.data });
+    io.emit('code update', data);
   });
 
   socket.on('competition end', function () {
