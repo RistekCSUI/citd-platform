@@ -29,19 +29,19 @@
             <div class="preview-cell col-lg-4 col-md-6 col-xs-12">
                 <a href="#" class="btn btn-danger">Preview</a>
                 <iframe>
-                    
+
                 </iframe>
             </div>
             <div class="preview-cell col-lg-4 col-md-6 col-xs-12">
                 <a href="#" class="btn btn-danger">Preview</a>
                 <iframe>
-                    
+
                 </iframe>
             </div>
             <div class="preview-cell col-lg-4 col-md-6 col-xs-12">
                 <a href="#" class="btn btn-danger">Preview</a>
                 <iframe>
-                    
+
                 </iframe>
             </div>
         </div>
@@ -65,7 +65,10 @@
 
     var socket = io();
     socket.on('code update', function(data) {
-        // TO DO: get data, update iframe
+        var html = $.parseHTML(data.code);
+        // TODO: compute ID from user ID
+        var id = 'iframe';
+        $(id).contents().find('html').html(html);
     });
 
     $('#competition-end').click(competitionEnd);
