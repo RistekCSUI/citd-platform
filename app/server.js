@@ -1,10 +1,18 @@
 var path = require('path');
-var express = require('express');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
+var express = require('express');
+var http = require('http');
 
 var app = express();
+var server = http.Server(app);
+var io = require('socket.io')(server);
 
+server.listen(3000);
+console.log('server listening at port 3000');
+
+// EXPRESS CONFIGURATION
+//
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', hbs.__express);
@@ -25,5 +33,15 @@ app.get('/admin', function (req, res) {
   res.render('admin.html');
 });
 
-app.listen(3000);
-console.log('server listening at port 3000');
+// SOCKET CONFIGURATION
+io.on('connection', function (socket) {
+  socket.on('code save', function (data) {
+    socket.emit('save response', { success: true });
+    io.emit('code update', { code: data.data });
+  });
+
+  socket.on('competition end', function () {
+    io.emit('competition end');
+  });
+});
+
