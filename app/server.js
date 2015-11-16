@@ -34,13 +34,14 @@ app.get('/admin', function (req, res) {
 });
 
 // SOCKET CONFIGURATION
-
 io.on('connection', function (socket) {
-  socket.on('store', function (data) {
-    // TODO: handle data
-    console.log(data);
-    socket.emit('success', { success: true });
-    socket.emit('update', { data: true });
+  socket.on('code save', function (data) {
+    socket.emit('save response', { success: true });
+    io.emit('code update', { code: data.data });
+  });
+
+  socket.on('competition end', function () {
+    io.emit('competition end');
   });
 });
 
