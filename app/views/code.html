@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/main.css">
 <style type="text/css" media="screen">
-  #editor { 
+  #editor {
     position: absolute;
     top: 50px;
     right: 0;
@@ -42,7 +42,7 @@
     </div>
   </div>
 </nav>
-<div id="editor"></div>
+<div id="editor">{{ user.code }}</div>
 <div id="message"></div>
 
   <!-- Modal -->
@@ -51,7 +51,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Video Preview
+        <h4 class="modal-title" id="myModalLabel">Video Preview</h4>
+      </div>
       <div class="modal-body">
         <iframe width="100%" height="315" src="https://www.youtube.com/embed/y-yzL5zJVno" frameborder="0" allowfullscreen></iframe>
       </div>
@@ -105,9 +106,9 @@
   });
   function store(data) {
     var data = {
-      userId: '', // user id
+      userId: '{{ user.id }}',
       code: editor.getValue()
-    };    
+    };
     if(JSON.stringify(oldData) !== JSON.stringify(data)) {
       socket.emit('code save', data);
       oldData = data;

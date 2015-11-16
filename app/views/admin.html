@@ -33,13 +33,13 @@
     <div class="container">
         <a href="#" class="btn btn-danger hide close-fullscreen">Close</a>
         <div class="row">
+            {{#each users}}
             <div class="preview-cell col-lg-4 col-md-6 col-xs-12">
                 <a href="#" class="btn btn-danger">Preview</a>
-                <iframe>
-
-                </iframe>
-                <p class="username hide">Username</p>
+                <iframe id="{{id}}"></iframe>
+                <p class="username hide">{{username}}</p>
             </div>
+            {{/each}}
         </div>
     </div>
 </div>
@@ -70,7 +70,7 @@
     var socket = io();
     socket.on('code update', function(data) {
         var html = $.parseHTML(data.code);
-        var id = data.id;
+        var id = '#' + data.userId;
         $(id).contents().find('html').html(html);
     });
 
@@ -78,5 +78,12 @@
     function competitionEnd() {
         socket.emit('competition end');
     }
+
+    // We need to do this because injecting iframe in place is not possible
+    {{#each users}}
+    {{#if code}}
+    $('#{{id}}').contents().find('html').html($.parseHTML('{{{code}}}'));
+    {{/if}}
+    {{/each}}
   })();
 </script>
