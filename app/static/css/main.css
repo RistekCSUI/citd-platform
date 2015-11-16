@@ -25,6 +25,11 @@ div[class^="col-"].col-table-cell {
 .admin-site {
   background-color: #212121;
   min-height: 100vh;
+  color: #fff;
+}
+
+.admin-site .checkbox {
+  margin: 12px 10px 0;
 }
 
 .admin-site .btn {
@@ -33,6 +38,16 @@ div[class^="col-"].col-table-cell {
 
 .preview-cell {
   position: relative;
+  width: 360px;
+  height: 240px;
+  overflow: hidden;
+  padding: 0;
+  margin: 15px;
+}
+
+.preview-cell p {
+  position: absolute;
+  bottom: 0;
 }
 
 .preview-cell .btn {
@@ -40,7 +55,9 @@ div[class^="col-"].col-table-cell {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  margin-top: -18px;
   display: none;
+  z-index: 997;
 }
 
 .preview-cell:hover .btn {
@@ -48,10 +65,17 @@ div[class^="col-"].col-table-cell {
 }
 
 .admin-site iframe {
-  width: 100%;
-  height: 56.25%;
-  z-index: -999;
+  width: 1440px;
+  height: 810px;
   background-color: #fff;
+
+  -ms-zoom: 0.25;
+  -moz-transform: scale(0.25);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.25);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.25);
+  -webkit-transform-origin: 0 0;
 }
 
 .preview-cell.fullscreen iframe {
@@ -63,6 +87,7 @@ div[class^="col-"].col-table-cell {
   width: 100vw;
   height: 100vh;
   z-index: 998;
+  transform: scale(1);
 }
 
 .close-fullscreen {

@@ -18,6 +18,13 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="show-username"> Show Username
+                            </label>
+                        </div>
+                    </li>
                     <li><button href="#" id="competition-end" class="btn btn-danger btn-sm">Competition End</button></li>
                 </ul>
             </div>
@@ -31,18 +38,7 @@
                 <iframe>
 
                 </iframe>
-            </div>
-            <div class="preview-cell col-lg-4 col-md-6 col-xs-12">
-                <a href="#" class="btn btn-danger">Preview</a>
-                <iframe>
-
-                </iframe>
-            </div>
-            <div class="preview-cell col-lg-4 col-md-6 col-xs-12">
-                <a href="#" class="btn btn-danger">Preview</a>
-                <iframe>
-
-                </iframe>
+                <p class="username hide">Username</p>
             </div>
         </div>
     </div>
@@ -50,7 +46,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.7/socket.io.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
-  $(function() {
+  (function() {
     $('.preview-cell .btn').click(function(e) {
         e.preventDefault();
         $(this).parent().addClass('fullscreen');
@@ -63,11 +59,18 @@
         $(this).addClass('hide');
     });
 
+    $('#show-username').change(function() {
+        if ($(this).is(':checked')) {
+            $('.username').removeClass('hide');
+        } else {
+            $('.username').addClass('hide');
+        }
+    });
+
     var socket = io();
     socket.on('code update', function(data) {
         var html = $.parseHTML(data.code);
-        // TODO: compute ID from user ID
-        var id = 'iframe';
+        var id = data.id;
         $(id).contents().find('html').html(html);
     });
 
@@ -75,5 +78,5 @@
     function competitionEnd() {
         socket.emit('competition end');
     }
-  });
+  })();
 </script>
