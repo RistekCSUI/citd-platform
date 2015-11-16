@@ -33,13 +33,15 @@
     <div class="container">
         <a href="#" class="btn btn-danger hide close-fullscreen">Close</a>
         <div class="row">
+            {{#each users}}
             <div class="preview-cell col-lg-4 col-md-6 col-xs-12">
                 <a href="#" class="btn btn-danger">Preview</a>
-                <iframe>
-
+                <iframe id="{{id}}">
+                    {{code}}
                 </iframe>
-                <p class="username hide">Username</p>
+                <p class="username hide">{{username}}</p>
             </div>
+            {{/each}}
         </div>
     </div>
 </div>

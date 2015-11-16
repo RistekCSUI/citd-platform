@@ -89,7 +89,10 @@ MongoClient.connect(DB_URL, function (err, db) {
   });
 
   app.get('/admin', loggedIn, isAdmin, function (req, res) {
-    res.render('admin.html');
+    db.collection('codes').find({}).toArray(function (err, users) {
+      if (err) return res.json(err);
+      res.render('admin.html', { users: users });
+    });
   });
 
   // SOCKET CONFIGURATION
