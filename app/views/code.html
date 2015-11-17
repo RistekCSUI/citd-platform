@@ -23,7 +23,7 @@
     position: fixed;
     display: none;
     top: 30%;
-    left: 30%;
+    left: 35%;
     align-items: center;
   }
   .btn {
@@ -39,7 +39,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Code In The Dark</a>
+      <a class="navbar-brand" href="#">Code in the Dark</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -81,12 +81,13 @@
   var editor = ace.edit("editor");
   var socket = io();
   var oldData;
-  $('#editor').css('fontSize', '20px');
+  $('#editor').css('fontSize', '16px');
   editor.setTheme("ace/theme/monokai");
   editor.getSession().setMode("ace/mode/html");
   editor.setHighlightActiveLine(true);
   editor.getSession().setUseWorker(false);
   editor.setBehavioursEnabled(false);
+  editor.setShowPrintMargin(false);
   editor.commands.addCommand({
     name: 'save',
     bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
@@ -110,8 +111,8 @@
   socket.on('competition end', function() {
     editor.setReadOnly(true);
     $('#save-button').click(function(){});
-    $('#end-message').html('Competition has ended. Thank you for your participance :")');
-    $('#end-message').addClass('alert alert-danger');
+    $('#end-message').html('The competition has ended. Thank you for your participation!');
+    $('#end-message').addClass('alert alert-info');
     $('#end-message').fadeIn(500);
   });
   function store(data) {
