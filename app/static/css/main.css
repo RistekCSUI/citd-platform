@@ -91,6 +91,14 @@ div[class^="col-"].col-table-cell {
   -webkit-transform-origin: 0 0;
 }
 
+.preview-cell.fullscreen .order {
+  position: fixed;
+  left: 0;
+  font-size: 4em;
+  padding: 10px 30px;
+  z-index: 1000;
+}
+
 .preview-cell.fullscreen iframe {
   position: fixed;
   top: 0;
