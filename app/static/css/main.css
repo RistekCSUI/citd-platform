@@ -44,15 +44,29 @@ div[class^="col-"].col-table-cell h3 {
 .preview-cell {
   position: relative;
   width: 360px;
-  height: 240px;
+  height: 203px;
   overflow: hidden;
   padding: 0;
   margin: 15px;
 }
 
-.preview-cell p {
+.preview-cell .order {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+  padding: 10px 20px;
+}
+
+.preview-cell .username {
   position: absolute;
   bottom: 0;
+  right: 0;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+  padding: 10px;
 }
 
 .preview-cell .btn {
@@ -60,7 +74,6 @@ div[class^="col-"].col-table-cell h3 {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin-top: -18px;
   display: none;
   z-index: 997;
 }
@@ -81,6 +94,14 @@ div[class^="col-"].col-table-cell h3 {
   -o-transform-origin: 0 0;
   -webkit-transform: scale(0.25);
   -webkit-transform-origin: 0 0;
+}
+
+.preview-cell.fullscreen .order {
+  position: fixed;
+  left: 0;
+  font-size: 4em;
+  padding: 10px 30px;
+  z-index: 1000;
 }
 
 .preview-cell.fullscreen iframe {
