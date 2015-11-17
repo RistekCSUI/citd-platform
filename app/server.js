@@ -99,8 +99,12 @@ MongoClient.connect(DB_URL, function (err, db) {
       .toArray(function (err, users) {
         if (err) return res.json(err);
 
-        users = users.map(function (user) {
+        var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Strip newlines to avoid broken strings on client
+        users = users.map(function (user, idx) {
           user.code = user.code.replace(/\n/g, '');
+          user.letter = letters[idx];
           return user;
         });
         res.render('admin.html', { users: users });
