@@ -103,7 +103,6 @@ MongoClient.connect(DB_URL, function (err, db) {
           user.code = user.code.replace(/\n/g, '');
           return user;
         });
-        console.log(users);
         res.render('admin.html', { users: users });
       });
   });
