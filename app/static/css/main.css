@@ -39,15 +39,29 @@ div[class^="col-"].col-table-cell {
 .preview-cell {
   position: relative;
   width: 360px;
-  height: 240px;
+  height: 203px;
   overflow: hidden;
   padding: 0;
   margin: 15px;
 }
 
-.preview-cell p {
+.preview-cell .order {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+  padding: 10px 20px;
+}
+
+.preview-cell .username {
   position: absolute;
   bottom: 0;
+  right: 0;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+  padding: 10px;
 }
 
 .preview-cell .btn {
@@ -55,7 +69,6 @@ div[class^="col-"].col-table-cell {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin-top: -18px;
   display: none;
   z-index: 997;
 }
