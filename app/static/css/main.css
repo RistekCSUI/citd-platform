@@ -14,6 +14,11 @@ div[class^="col-"].col-table-cell {
   vertical-align: middle;
 }
 
+div[class^="col-"].col-table-cell h1,
+div[class^="col-"].col-table-cell h3 {
+  color: white;
+}
+
 .login-site {
   background-color: #222222;
   min-height: 100vh;
