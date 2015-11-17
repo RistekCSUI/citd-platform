@@ -107,22 +107,31 @@ MongoClient.connect(DB_URL, function (err, db) {
       });
   });
 
+  // Running flag
+  var competitionRunning = true;
+
   // SOCKET CONFIGURATION
   io.on('connection', function (socket) {
-    socket.on('code save', function (data) {
-      db.collection('codes')
-        .updateOne({ id: data.userId }, { $set: { code: data.code } }, function (err, results) {
-          if (err) {
-            socket.emit('save response', { success: false });
-            return console.err(err);
-          }
 
-          socket.emit('save response', { success: true });
-          io.emit('code update', data);
-        });
+    socket.on('code save', function (data) {
+      if (competitionRunning) {
+        db.collection('codes')
+          .updateOne({ id: data.userId }, { $set: { code: data.code } }, function (err, results) {
+            if (err) {
+              socket.emit('save response', { success: false });
+              return console.err(err);
+            }
+
+            socket.emit('save response', { success: true });
+            io.emit('code update', data);
+          });
+      } else {
+        socket.emit('save response', { success: false });
+      }
     });
 
     socket.on('competition end', function () {
+      competitionRunning = false;
       io.emit('competition end');
     });
   });
