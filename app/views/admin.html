@@ -54,12 +54,14 @@
         e.preventDefault();
         $(this).parent().addClass('fullscreen');
         $('.close-fullscreen').removeClass('hide');
+        $('body').css('overflowy', 'hidden');
     });
 
     $('.close-fullscreen').click(function(e) {
         e.preventDefault();
         $('.preview-cell').removeClass('fullscreen');
         $(this).addClass('hide');
+        $('body').css('overflowy', 'visible');
     });
 
     {{#if isAdmin}}
