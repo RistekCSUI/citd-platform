@@ -54,14 +54,14 @@
         e.preventDefault();
         $(this).parent().addClass('fullscreen');
         $('.close-fullscreen').removeClass('hide');
-        $('body').css('overflowy', 'hidden');
+        $('body').css('overflowY', 'hidden');
     });
 
     $('.close-fullscreen').click(function(e) {
         e.preventDefault();
         $('.preview-cell').removeClass('fullscreen');
         $(this).addClass('hide');
-        $('body').css('overflowy', 'visible');
+        $('body').css('overflowY', 'visible');
     });
 
     {{#if isAdmin}}
