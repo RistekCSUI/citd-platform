@@ -92,24 +92,29 @@ MongoClient.connect(DB_URL, function (err, db) {
       });
   });
 
-  app.get('/admin', loggedIn, isAdmin, function (req, res) {
-    db.collection('codes')
-      .find({ username: { $ne: 'admin' } })
-      .sort({ id: 1 })
-      .toArray(function (err, users) {
-        if (err) return res.json(err);
+  app.get('/public', showPreviewPage(false));
+  app.get('/admin', loggedIn, isAdmin, showPreviewPage(true));
 
-        var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  function showPreviewPage(showButton) {
+    return function (req, res) {
+      db.collection('codes')
+        .find({ username: { $ne: 'admin' } })
+        .sort({ id: 1 })
+        .toArray(function (err, users) {
+          if (err) return res.json(err);
 
-        // Strip newlines to avoid broken strings on client
-        users = users.map(function (user, idx) {
-          user.code = user.code.replace(/\n/g, '');
-          user.letter = letters[idx];
-          return user;
+          var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+          // Strip newlines to avoid broken strings on client
+          users = users.map(function (user, idx) {
+            user.code = user.code.replace(/\n/g, '');
+            user.letter = letters[idx];
+            return user;
+          });
+          res.render('admin.html', { users: users, showButton: showButton });
         });
-        res.render('admin.html', { users: users });
-      });
-  });
+    }
+  }
 
   // Running flag
   var competitionRunning = true;
