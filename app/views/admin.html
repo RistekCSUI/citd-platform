@@ -79,7 +79,9 @@
 
     $('#competition-end').click(competitionEnd);
     function competitionEnd() {
-        socket.emit('competition end');
+        if (confirm('Are you sure want to end competition?') == true) {
+            socket.emit('competition end');
+        }
     }
 
     // We need to do this because injecting iframe in place is not possible
