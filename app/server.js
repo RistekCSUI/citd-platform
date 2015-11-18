@@ -95,7 +95,7 @@ MongoClient.connect(DB_URL, function (err, db) {
   app.get('/public', showPreviewPage(false));
   app.get('/admin', loggedIn, isAdmin, showPreviewPage(true));
 
-  function showPreviewPage(showButton) {
+  function showPreviewPage(isAdmin) {
     return function (req, res) {
       db.collection('codes')
         .find({ username: { $ne: 'admin' } })
@@ -111,7 +111,7 @@ MongoClient.connect(DB_URL, function (err, db) {
             user.letter = letters[idx];
             return user;
           });
-          res.render('admin.html', { users: users, showButton: showButton });
+          res.render('admin.html', { users: users, isAdmin: isAdmin });
         });
     }
   }
