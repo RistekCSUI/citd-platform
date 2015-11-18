@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<title>Admin</title>
+<title>{{#if isAdmin}}Admin{{else}}Code in the Dark{{/if}}</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/main.css">
 
@@ -16,7 +16,7 @@
                 <a class="navbar-brand" href="#">Code in the Dark</a>
             </div>
 
-            {{#if showButton}}
+            {{#if isAdmin}}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -62,6 +62,7 @@
         $(this).addClass('hide');
     });
 
+    {{#if isAdmin}}
     $('#show-username').change(function() {
         if ($(this).is(':checked')) {
             $('.username').removeClass('hide');
@@ -69,6 +70,7 @@
             $('.username').addClass('hide');
         }
     });
+    {{/if}}
 
     var socket = io();
     socket.on('code update', function(data) {
@@ -77,10 +79,12 @@
         $(id).contents().find('html').html(html);
     });
 
+    {{#if isAdmin}}
     $('#competition-end').click(competitionEnd);
     function competitionEnd() {
         socket.emit('competition end');
     }
+    {{/if}}
 
     // We need to do this because injecting iframe in place is not possible
     {{#each users}}
