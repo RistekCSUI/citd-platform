@@ -56,7 +56,7 @@ Distribute the username and passwords to your contestants.
 5. When the time is up, a message will appear and the editor and saving will be disabled.
 6. Go to `/logout` to log out of the app.
 
-### As admin / preview
+### As admin
 
 1. Open the app, login using admin username and password
 2. You will be shown several thumbnails of the contestants' works.
@@ -65,13 +65,17 @@ Distribute the username and passwords to your contestants.
   - Show the usernames (upper-right checkbox)
   - End the competition (also upper-right button)
 
-You can also project this view to the audience :)
+### As public preview
+
+1. Open the app at `/public` (no need to login)
+2. You can preview each of the work
 
 ## Routes
 
 - `/`: Login route
 - `/code`: Editor route for contestants
-- `/admin`: Admin route for previewing
+- `/admin`: Admin route for previewing and closing the competition
+- `/public`: For public previews
 - `/logout`: Logout route
 
 ## Contributing
