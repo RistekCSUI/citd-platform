@@ -12,6 +12,12 @@ This was meant for a one-off, one night competition. We didn't hash the password
 - Node.js and npm
 - MongoDB running on localhost
 
+## Technologies used
+
+- [Ace Editor](https://ace.c9.io/#nav=about) for the fantastic web-based editor
+- [Socket.IO](http://socket.io/) for real-time client-server communications
+- [Express.js](http://expressjs.com/) as the web server
+
 ## Setting up
 
 1. Clone this repository and cd into it
