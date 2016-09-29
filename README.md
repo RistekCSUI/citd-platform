@@ -3,6 +3,8 @@ Code In The Dark Platform
 
 Web platform for Code in the Dark competition at Pekan Ristek 2015, hacked together in a week.
 
+![Screenshot](screenshot.jpg)
+
 ## NOTE!
 
 This was meant for a one-off, one night competition. We didn't hash the passwords (terrible!) for easier password distribution to contestants, but if you want to deploy this to production, please hash them. You have been warned.
